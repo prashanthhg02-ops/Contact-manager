@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Contact Manager</h1>
+      <p class="subtitle">Add, search, edit, and delete contacts — stored in your browser.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Add / Edit Contact</h2>
+
+      <form id="contactForm" class="form" autocomplete="off">
+        <input type="hidden" id="contactId" />
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="e.g., John Doe" required minlength="2" />
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="e.g., +1 555 123 4567" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="e.g., john@example.com" />
+        </div>
+
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" placeholder="e.g., Acme Inc" />
+        </div>
+
+        <div class="actions">
+          <button id="saveBtn" type="submit" class="primary">Save Contact</button>
+          <button id="cancelBtn" type="button" class="ghost" hidden>Cancel</button>
+          <button id="clearAllBtn" type="button" class="danger">Clear All</button>
+        </div>
+
+        <p id="formHint" class="hint" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panelHead">
+        <h2>Contacts</h2>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search by name, phone, email, company..." />
+          <div class="selectWrap">
+            <label class="srOnly" for="sortBy">Sort</label>
+            <select id="sortBy">
+              <option value="createdDesc">Newest</option>
+              <option value="createdAsc">Oldest</option>
+              <option value="nameAsc">Name (A-Z)</option>
+              <option value="nameDesc">Name (Z-A)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="tableWrap" role="region" aria-label="Contacts list">
+        <table class="table" id="contactsTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Company</th>
+              <th style="width: 180px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="contactsBody"></tbody>
+        </table>
+
+        <div id="emptyState" class="empty">
+          <div class="emptyIcon">📇</div>
+          <div>
+            <div class="emptyTitle">No contacts found</div>
+            <div class="emptyText">Add a contact above to get started.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Tip: your data stays in this browser (localStorage).</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
